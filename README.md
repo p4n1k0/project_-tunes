@@ -1,4 +1,4 @@
-# Boas-vindas ao repositório do projeto ?tunes!
+# Boas-vindas ao repositório do projeto -tunes!
 
 <details>
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
@@ -47,9 +47,9 @@ Neste projeto, fui capaz de:
 
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:p4n1k0/project_?tunes.git`.
+  - Use o comando: `git clone git@github.com:p4n1k0/project_-tunes.git`.
   - Entre na pasta do repositório que você acabou de clonar:
-    - `cd project_?tunes
+    - `cd project_-tunes
 
   2. Instale as dependências
 
