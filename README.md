@@ -47,9 +47,9 @@ Neste projeto, fui capaz de:
 
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:tryber/sd-022-a-project-trybetunes.git`.
+  - Use o comando: `git clone git@github.com:p4n1k0/project_?tunes.git`.
   - Entre na pasta do repositório que você acabou de clonar:
-    - `cd sd-022-a-project-trybetunes`
+    - `cd project_?tunes
 
   2. Instale as dependências
 
