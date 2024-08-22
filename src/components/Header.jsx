@@ -28,23 +28,23 @@ class Header extends Component {
     const { loading, name } = this.state;
 
     return (
-      <div>
-        <div>
+      <div class="d-flex flex-row mb-3">
+        <div class="p-2">
           <header data-testid="header-component">
             {loading ? <Loading /> : <p data-testid="header-user-name">{name}</p>}
           </header>
         </div>
-        <div>
+        <div class="p-2">
           <Link data-testid="link-to-search" to="/search">
             Search
           </Link>
         </div>
-        <div>
+        <div class="p-2">
           <Link data-testid="link-to-favorites" to="/favorites">
             Favorites
           </Link>
         </div>
-        <div>
+        <div class="p-2">
           <Link data-testid="link-to-profile" to="/profile">
             Profile
           </Link>

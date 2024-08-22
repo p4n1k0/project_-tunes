@@ -39,7 +39,7 @@ class MusicCard extends Component {
               .
             </audio>
             <label htmlFor="favorite">
-              Favorita
+              Favoritar
               <input
                 data-testid={ `checkbox-music-${trackId}` }
                 name="favorite"

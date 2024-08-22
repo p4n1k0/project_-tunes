@@ -73,7 +73,7 @@ class Login extends Component {
                 />
                 <Button
                   id="btn-login"
-                  variant="danger"
+                  variant="success"
                   data-testid="login-submit-button"
                   type="button"
                   onClick={ this.handleClick }
