@@ -55,7 +55,7 @@ class MusicCard extends Component {
             </audio>
             <form>
               <label htmlFor="favorite">
-                Favorita
+                Favoritar
                 <input
                   name="favorite"
                   id="favorite"
