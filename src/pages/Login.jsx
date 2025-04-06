@@ -25,13 +25,10 @@ class Login extends Component {
       const { name } = this.state;
       const minCharacter = 3;
 
-      if (name.length >= minCharacter) {
-        this.setState({ button: false });
-      } else {
-        this.setState({ button: true });
-      }
+      if (name.length >= minCharacter) this.setState({ button: false });
+      else this.setState({ button: true });
     });
-  }
+  };
 
   async handleClick(event) {
     event.preventDefault();
@@ -42,9 +39,7 @@ class Login extends Component {
       const { history } = this.props;
       await createUser({ name });
 
-      if (endpoint) {
-        return history.push('/search');
-      }
+      if (endpoint) return history.push('/search');
       this.setState({ endpoint: false });
     });
   }

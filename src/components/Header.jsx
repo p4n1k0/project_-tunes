@@ -6,23 +6,24 @@ import Loading from './Loading';
 class Header extends Component {
   constructor() {
     super();
-
-    this.state = { name: '', loading: true };
-  }
+    this.state = {
+      name: '',
+      loading: true
+    };
+  };
 
   async componentDidMount() {
-    this.setState(
-      { loading: true },
-
+    this.setState({ loading: true },
       async () => {
         const user = await getUser();
 
-        this.setState(
-          { loading: false, name: user.name },
-        );
+        this.setState({
+          loading: false,
+          name: user.name
+        },);
       },
     );
-  }
+  };
 
   render() {
     const { loading, name } = this.state;
@@ -51,7 +52,7 @@ class Header extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 export default Header;

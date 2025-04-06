@@ -17,7 +17,7 @@ class Search extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-  }
+  };
 
   handleChange(event) {
     this.setState(
@@ -27,28 +27,22 @@ class Search extends Component {
         const { artist } = this.state;
         const minCharacter = 2;
 
-        if (artist.length >= minCharacter) {
-          this.setState(
-            { button: false },
-          );
-        } else {
-          this.setState(
-            { button: true },
-          );
-        }
+        if (artist.length >= minCharacter) this.setState({ button: false },);
+        else this.setState({ button: true },);
       },
     );
-  }
+  };
 
   async handleClick() {
     const { artist } = this.state;
 
-    this.setState(
-      { artist, loading: true },
+    this.setState({
+      artist,
+      loading: true
+    },
 
       async () => {
         const album = await searchAlbumsAPI(artist);
-
         this.setState({
           researched: artist,
           albums: album,
@@ -56,7 +50,7 @@ class Search extends Component {
         });
       },
     );
-  }
+  };
 
   render() {
     const { button, researched, albums, loading } = this.state;
@@ -107,7 +101,7 @@ class Search extends Component {
         </div>
       </main>
     );
-  }
-}
+  };
+};
 
 export default Search;

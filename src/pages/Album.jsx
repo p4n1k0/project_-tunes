@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor() {
@@ -11,53 +10,47 @@ class Album extends Component {
 
     this.state = {
       music: [],
-      tracks: '',
-      favorites: [],
+      artistName: '',
+      collectionName: '',
     };
-  }
+  };
 
-  componentDidMount() { this.handleStatus(); }
-
-  componentDidUpdate() { this.handleStatus(); }
-
-  async handleStatus() {
+  async componentDidMount() {
     const { match } = this.props;
     const soundtrack = await getMusics(match.params.id);
-    const favorites = await getFavoriteSongs();
 
     this.setState({
       music: soundtrack,
-      tracks: soundtrack[0],
-      favorites,
+      artistName: soundtrack[0].artistName,
+      collectionName: soundtrack[0].collectionName,
     });
-  }
+  };
+
 
   render() {
-    const { music, tracks, favorites } = this.state;
-    const newSong = music.filter((_, index) => index !== 0);
+    const { music, artistName, collectionName } = this.state;
+    const tracks = music.filter((element) => element.kind === 'song');
 
     return (
       <div data-testid="page-album">
         <Header />
-        {newSong.map((song) => (<MusicCard
-          key={ song.trackId }
-          music={ newSong }
-          name={ song.trackName }
-          song={ song.previewUrl }
-          trackId={ song.trackId }
-          checked={ favorites.find((favorite) => (
-            favorite.trackId === song.trackId
-          )) }
-        />
+        Album
+        <p data-testid="artist-name">{artistName}</p>
+        <p data-testid="album-name">{collectionName}</p>
+        {tracks.map((element, index) => (
+          <section key={index}>
+            <MusicCard
+              musicName={element.trackName}
+              previewUrl={element.previewUrl}
+              trackId={element.trackId}
+            />
+          </section>
         ))}
-        <p data-testid="artist-name">{ tracks.artistName }</p>
-        <p data-testid="album-name">{ tracks.collectionName }</p>
-        <img src={ tracks.artworkUrl100 } alt={ tracks.collectionName } />
       </div>
     );
-  }
-}
+  };
+};
 
-Album.propTypes = { match: PropTypes.arrayOf(PropTypes.array).isRequired };
+Album.propTypes = { match: PropTypes.object.isRequired };
 
 export default Album;

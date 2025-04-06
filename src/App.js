@@ -12,13 +12,13 @@ class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route path="/search" component={ Search } />
-        <Route path="/album/:id" component={ Album } />
-        <Route path="/favorites" component={ Favorites } />
-        <Route exact path="/profile" component={ Profile } />
-        <Route path="/profile/edit" component={ ProfileEdit } />
-        <Route component={ NotFound } />
+        <Route exact path="/" component={Login} />
+        <Route path="/search" component={Search} />
+        <Route path="/album/:id" component={Album} />
+        <Route path="/favorites" render={(props) => (<Favorites {...props} />)} />
+        <Route exact path="/profile" component={Profile} />
+        <Route path="/profile/edit" render={(props) => (<ProfileEdit {...props} />)} />
+        <Route component={NotFound} />
       </Switch>
     );
   }
