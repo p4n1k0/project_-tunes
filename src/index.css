@@ -4,6 +4,14 @@
   margin: 0px;
 } */
 
+html,
+body {
+  min-height: 100%;
+  text-align: center;
+  flex-direction: column;
+  background-color: purple;
+}
+
 #ipt-lgn {
   padding: 3.3px;
 }
@@ -13,5 +21,5 @@
 }
 
 #btn-login {
-  padding: 3.3px;  
+  padding: 3.3px;
 }
