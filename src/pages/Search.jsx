@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
+import './Search.css';
 
 const INITIAL_STATE = {
   artist: '',
@@ -52,50 +53,55 @@ class Search extends Component {
     const { button, researched, albums, loading } = this.state;
 
     return (
-      <main data-testid="page-search">
-        <Header />
-        {loading ? (
-          <Loading />
-        ) : (
-          <label htmlFor="search">
-            <input
-              name="search"
-              data-testid="search-artist-input"
-              onChange={ this.handleChange }
-            />
-            <button
-              type="submit"
-              data-testid="search-artist-button"
-              disabled={ button }
-              onClick={ this.handleClick }
-            >
-              Pesquisar
-            </button>
-          </label>
-        )}
-        <div>
-          <h3>{`Resultado de álbuns de: ${researched}`}</h3>
-          {albums.length === 0 ? (
-            <p>Nenhum álbum foi encontrado</p>
+      <div className="search-main" data-testid="page-search">
+        <form className="search-input-container">
+          <Header />
+          {loading ? (
+            <Loading />
           ) : (
-            albums.map((album) => (
-              <div key={ album.collectionId }>
-                <img
-                  src={ album.artworkUrl100 }
-                  alt={ album.collectionName }
-                />
-                <p>{album.artistName}</p>
-                <Link
-                  data-testid={ `link-to-album-${album.collectionId}` }
-                  to={ `/album/${album.collectionId}` }
-                >
-                  {album.collectionName}
-                </Link>
-              </div>
-            ))
+            <label htmlFor="search">
+              <input
+                name="search"
+                data-testid="search-artist-input"
+                onChange={this.handleChange}
+              />
+              <button
+                type="submit"
+                data-testid="search-artist-button"
+                disabled={button}
+                onClick={this.handleClick}
+              >
+                Pesquisar
+              </button>
+            </label>
           )}
-        </div>
-      </main>
+        </form>
+        <span className="search-span-container">
+          <div className="search-results-container">
+            <h3>{`Resultado de álbuns de: ${researched}`}</h3>
+            {albums.length === 0 ? (
+              <p>Nenhum álbum foi encontrado</p>
+            ) : (
+              albums.map((album) => (
+                <div key={album.collectionId}>
+                  <Link
+                    data-testid={`link-to-album-${album.collectionId}`}
+                    to={`/album/${album.collectionId}`}
+                    className="artist-card"
+                  >
+                    <img
+                      src={album.artworkUrl100}
+                      alt={album.collectionName}
+                    />
+                    <p>{album.artistName}</p>
+                    <p>{album.collectionName}</p>
+                  </Link>
+                </div>
+              ))
+            )}
+          </div>
+        </span>
+      </div>
     );
   };
 };

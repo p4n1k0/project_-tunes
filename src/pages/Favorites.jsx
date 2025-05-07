@@ -6,7 +6,6 @@ import Loading from '../components/Loading';
 
 const INITIAL_STATE = {
   favorites: [],
-  favorited: false,
   loading: false
 }
 
@@ -29,27 +28,30 @@ class Favorites extends Component {
   };
 
   render() {
-    const { favorites, favorited, loading } = this.state;
-    
+    const { favorites, loading } = this.state;
+
+    if (loading) return <Loading />
     return (
       <div data-testid="page-favorites">
         <Header />
-        {loading && <Loading />}
-        {!favorited ? <span>Nenhuma música favorita</span> : (
-          <section>
-            {favorites.map((element, index) => (
-              <section key={index}>
-                <MusicCard
-                  musicName={element.trackName}
-                  previewUrl={element.previewUrl}
-                  trackId={element.trackId}
-                  getFavorite={this.getFavorite}
-                />
+        {
+          favorites.length === 0
+            ?
+            (<span>Nenhuma música favorita</span>)
+            : (
+              <section>
+                {favorites.map((element, index) => (
+                  <section key={index}>
+                    <MusicCard
+                      musicName={element.trackName}
+                      previewUrl={element.previewUrl}
+                      trackId={element.trackId}
+                      getFavorite={this.getFavorite}
+                    />
+                  </section>
+                ))}
               </section>
-
-            ))}
-          </section>
-        )}
+            )}
       </div>
     );
   };

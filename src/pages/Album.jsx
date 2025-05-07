@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import './Album.css';
 
 const INITIAL_STATE = {
   music: [],
@@ -33,11 +34,14 @@ class Album extends Component {
     const tracks = music.filter((element) => element.kind === 'song');
 
     return (
-      <div data-testid="page-album">
+      <div data-testid="page-album" className="album-info-container">
         <Header />
-        Album
-        <p data-testid="artist-name">{artistName}</p>
-        <p data-testid="album-name">{collectionName}</p>
+        <span className="album-info-box">
+          <p className="album-name" data-testid="artist-name">{artistName}</p>
+          <span className="album-description-box">
+            <p data-testid="album-name">{collectionName}</p>
+          </span>
+        </span>
         {tracks.map((element, index) => (
           <section key={index}>
             <MusicCard

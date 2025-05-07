@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import './MusicCard.css';
 
 const INITIAL_STATE = { checked: false, loading: false };
 
@@ -45,19 +46,24 @@ class MusicCard extends Component {
     const { checked, loading } = this.state;
 
     return (
-      <section>
+      <div className="music-card">
         {loading ? <Loading /> : (
           <>
-            <p>{musicName}</p>
-            <audio data-testid="audio-component" src={previewUrl} controls>
+            <p className="music-name">{musicName}</p>
+            <audio
+              data-testid="audio-component"
+              src={previewUrl}
+              controls
+              className="music-player"
+            >
               <track kind="captions" />
               O seu navegador não suporta o elemento
               <code>audio</code>
               .
             </audio>
             <form>
-              <label htmlFor="favorite">
-                Favoritar
+              <label htmlFor="favorite" className="favorito-container">
+                Favorita
                 <input
                   name="favorite"
                   id="favorite"
@@ -69,7 +75,7 @@ class MusicCard extends Component {
               </label>
             </form>
           </>)}
-      </section>
+      </div>
     );
   };
 };
@@ -81,7 +87,7 @@ MusicCard.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
-  
+
   getFavorite: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
