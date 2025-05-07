@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
 
+const INITIAL_STATE = { name: '', loading: false };
+
 class Header extends Component {
   constructor() {
     super();
-    this.state = {
-      name: '',
-      loading: true
-    };
+    this.state = INITIAL_STATE;
   };
 
   async componentDidMount() {
@@ -18,8 +17,8 @@ class Header extends Component {
         const user = await getUser();
 
         this.setState({
-          loading: false,
-          name: user.name
+          name: user.name,
+          loading: false
         },);
       },
     );

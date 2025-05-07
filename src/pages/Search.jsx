@@ -4,30 +4,29 @@ import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 
+const INITIAL_STATE = {
+  artist: '',
+  button: true,
+  albums: [],
+  loading: false,
+  researched: '',
+};
+
 class Search extends Component {
   constructor() {
     super();
+    this.state = INITIAL_STATE;
 
-    this.state = {
-      artist: '',
-      button: true,
-      albums: [],
-      loading: false,
-      researched: '',
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   };
 
   handleChange(event) {
     this.setState(
-      { artist: event.target.value },
-
-      () => {
+      { artist: event.target.value }, () => {
         const { artist } = this.state;
-        const minCharacter = 2;
 
-        if (artist.length >= minCharacter) this.setState({ button: false },);
+        if (artist.length >= 2) this.setState({ button: false },);
         else this.setState({ button: true },);
       },
     );
@@ -36,10 +35,7 @@ class Search extends Component {
   async handleClick() {
     const { artist } = this.state;
 
-    this.setState({
-      artist,
-      loading: true
-    },
+    this.setState({ artist, loading: true },
 
       async () => {
         const album = await searchAlbumsAPI(artist);
@@ -78,9 +74,9 @@ class Search extends Component {
           </label>
         )}
         <div>
-          <h2>{`Resultado de álbuns de: ${researched}`}</h2>
+          <h3>{`Resultado de álbuns de: ${researched}`}</h3>
           {albums.length === 0 ? (
-            <h3>Nenhum álbum foi encontrado</h3>
+            <p>Nenhum álbum foi encontrado</p>
           ) : (
             albums.map((album) => (
               <div key={ album.collectionId }>

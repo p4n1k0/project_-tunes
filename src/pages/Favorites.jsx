@@ -4,14 +4,16 @@ import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
 
+const INITIAL_STATE = {
+  favorites: [],
+  favorited: false,
+  loading: false
+}
+
 class Favorites extends Component {
   constructor() {
     super();
-    this.state = {
-      favorites: [],
-      test: false,
-      loading: false,
-    };
+    this.state = INITIAL_STATE;
   };
 
   async componentDidMount() {
@@ -20,20 +22,20 @@ class Favorites extends Component {
 
   getFavorite = async () => {
     this.setState({ loading: true });
-    const favorites = await getFavoriteSongs();
     this.setState({
-      favorites,
+      favorites: await getFavoriteSongs(),
       loading: false,
     });
   };
 
   render() {
-    const { favorites, test, loading } = this.state;
+    const { favorites, favorited, loading } = this.state;
+    
     return (
       <div data-testid="page-favorites">
         <Header />
         {loading && <Loading />}
-        {test ? <span>Nenhuma musica favorita</span> : (
+        {!favorited ? <span>Nenhuma música favorita</span> : (
           <section>
             {favorites.map((element, index) => (
               <section key={index}>

@@ -4,51 +4,53 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
 
+const INITIAL_STATE = {
+  loading: false,
+  description: '',
+  email: '',
+  image: '',
+  name: '',
+  isDisabled: true,
+};
+
 class ProfileEdit extends Component {
   constructor() {
     super();
-    this.state = {
-      loading: false,
-      descriptionSaved: '',
-      emailSaved: '',
-      imageSaved: '',
-      nameSaved: '',
-      isDisabled: true,
-    };
+    this.state = INITIAL_STATE;
   };
 
   async componentDidMount() {
     const { description, email, image, name } = await getUser();
     this.setState({
       loading: false,
-      descriptionSaved: description,
-      emailSaved: email,
-      imageSaved: image,
-      nameSaved: name,
+      description: description,
+      email: email,
+      image: image,
+      name: name,
     });
   };
 
   changeProfile = ({ target }) => {
     const { name } = target;
-    this.setState({
-      [name]: target.value,
-    }, () => this.buttonVerify());
+    this.setState({ [name]: target.value, }, () => this.buttonVerify());
   };
 
   buttonVerify = () => {
-    const { descriptionSaved, emailSaved, imageSaved, nameSaved } = this.state;
-    if (nameSaved !== '' && emailSaved !== '' && imageSaved !== '' && descriptionSaved !== '') this.setState({ isDisabled: false });
+    const { description, email, image, name } = this.state;
+
+    if (name !== '' && email !== '' && image !== '' && description !== '') this.setState({ isDisabled: false });
     else this.setState({ isDisabled: true });
   };
 
   saveUser = async () => {
-    const { descriptionSaved, emailSaved, imageSaved, nameSaved } = this.state;
+    const { description, email, image, name } = this.state;
     const { history } = this.props;
+
     const userUpdate = {
-      name: nameSaved,
-      email: emailSaved,
-      image: imageSaved,
-      description: descriptionSaved
+      name: name,
+      email: email,
+      image: image,
+      description: description
     };
     this.setState({
       loading: true,
@@ -61,9 +63,8 @@ class ProfileEdit extends Component {
   };
 
   render() {
-    const { loading,
-      descriptionSaved,
-      emailSaved, imageSaved, nameSaved, isDisabled } = this.state;
+    const { loading, description, email, image, name, isDisabled } = this.state;
+
     return (
       <div data-testid="page-profile-edit">
         <section>
@@ -76,8 +77,8 @@ class ProfileEdit extends Component {
                 data-testid="edit-input-name"
                 type="text"
                 id="name-user"
-                name="nameSaved"
-                value={nameSaved}
+                name="name"
+                value={name}
                 onChange={this.changeProfile}
               />
             </label>
@@ -88,8 +89,8 @@ class ProfileEdit extends Component {
                 data-testid="edit-input-email"
                 type="email"
                 id="email-user"
-                name="emailSaved"
-                value={emailSaved}
+                name="email"
+                value={email}
                 onChange={this.changeProfile}
               />
               <br />
@@ -99,8 +100,8 @@ class ProfileEdit extends Component {
               <textarea
                 data-testid="edit-input-description"
                 id="description-user"
-                name="descriptionSaved"
-                value={descriptionSaved}
+                name="description"
+                value={description}
                 onChange={this.changeProfile}
               />
               <br />
@@ -111,8 +112,8 @@ class ProfileEdit extends Component {
                 data-testid="edit-input-image"
                 type="text"
                 id="image-user"
-                name="imageSaved"
-                value={imageSaved}
+                name="image"
+                value={image}
                 onChange={this.changeProfile}
               />
               <br />

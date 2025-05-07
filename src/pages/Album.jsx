@@ -4,15 +4,16 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 
+const INITIAL_STATE = {
+  music: [],
+  artistName: '',
+  collectionName: '',
+}
+
 class Album extends Component {
   constructor() {
     super();
-
-    this.state = {
-      music: [],
-      artistName: '',
-      collectionName: '',
-    };
+    this.state = INITIAL_STATE;
   };
 
   async componentDidMount() {

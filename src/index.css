@@ -1,19 +1,19 @@
-html,
 body {
-  min-height: 100%;
-  text-align: center;
-  flex-direction: column;
-  background-color: purple;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#ipt-lgn {
-  padding: 3.3px;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-#ipt-lgn {
-  padding: 3.3px;
-}
-
-#btn-login {
-  padding: 3.3px;
+.loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

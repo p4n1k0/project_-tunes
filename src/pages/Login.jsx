@@ -1,42 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './Login.css';
+
+
+const INITIAL_STATE = {
+  name: '',
+  button: true,
+  endpoint: false,
+};
 
 class Login extends Component {
   constructor() {
     super();
+    this.state = INITIAL_STATE;
 
-    this.state = {
-      name: '',
-      button: true,
-      endpoint: false,
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
     const { value } = target;
-
     this.setState({ name: value }, () => {
       const { name } = this.state;
-      const minCharacter = 3;
 
-      if (name.length >= minCharacter) this.setState({ button: false });
+      if (name.length >= 3) this.setState({ button: false });
       else this.setState({ button: true });
     });
   };
 
   async handleClick(event) {
     event.preventDefault();
+
     const { name } = this.state;
 
     this.setState({ endpoint: true }, async () => {
       const { endpoint } = this.state;
       const { history } = this.props;
+
       await createUser({ name });
 
       if (endpoint) return history.push('/search');
@@ -47,40 +49,37 @@ class Login extends Component {
   render() {
     const { button, endpoint } = this.state;
     return (
-      <main>
+      <div className="login-container">
         {endpoint ? (
           <Loading />
         ) : (
-          <div
-            className="container d-flex justify-content-center"
-            data-testid="page-login"
-          >
-            <label htmlFor="name">
-              <div className="border border-dark align-self-center">
-                <input
-                  id="ipt-lgn"
-                  placeholder="Digite seu login"
-                  data-testid="login-name-input"
-                  name="name"
-                  type="text"
-                  required
-                  onChange={ this.handleChange }
-                />
-                <Button
-                  id="btn-login"
-                  variant="danger"
-                  data-testid="login-submit-button"
-                  type="button"
-                  onClick={ this.handleClick }
-                  disabled={ button }
-                >
-                  LOGIN
-                </Button>
-              </div>
-            </label>
+          <div className="form-container" data-testid="page-login">
+            <form className="formulario">
+              <h1>GTUNES</h1>
+              <input
+                placeholder="Insira seu nome de usuário"
+                data-testid="login-name-input"
+                name="name"
+                type="text"
+                required
+                onChange={this.handleChange}
+              />
+              <button
+                type="submit"
+                data-testid="login-submit-button"
+                onClick={this.handleClick}
+                disabled={button}
+              >
+                LOGIN
+              </button>
+            </form>
+            <img
+              src="https://i.pinimg.com/originals/fe/35/45/fe3545469a6d65137b921656ae976c3e.gif"
+              alt="gatinho ouvindo musica"
+            />
           </div>
         )}
-      </main>
+      </div>
     );
   }
 }
