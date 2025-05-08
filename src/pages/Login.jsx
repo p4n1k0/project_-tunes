@@ -70,7 +70,7 @@ class Login extends Component {
                 onClick={this.handleClick}
                 disabled={button}
               >
-                LOGIN
+                ENTRAR
               </button>
             </form>
             <img

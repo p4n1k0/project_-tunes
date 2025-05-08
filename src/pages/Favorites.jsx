@@ -32,26 +32,31 @@ class Favorites extends Component {
 
     if (loading) return <Loading />
     return (
-      <div data-testid="page-favorites">
+      <div data-testid="page-favorites" className="favorites-container">
         <Header />
-        {
-          favorites.length === 0
-            ?
-            (<span>Nenhuma música favorita</span>)
-            : (
-              <section>
-                {favorites.map((element, index) => (
-                  <section key={index}>
-                    <MusicCard
-                      musicName={element.trackName}
-                      previewUrl={element.previewUrl}
-                      trackId={element.trackId}
-                      getFavorite={this.getFavorite}
-                    />
-                  </section>
-                ))}
-              </section>
-            )}
+        <span className="album-music-container">
+          {
+            favorites.length === 0
+              ? (
+                <span className="not-favorited-message">
+                  <h1>Nenhuma música favorita</h1>
+                </span>
+              ) : (
+                favorites.map(({
+                  musicName,
+                  previewUrl,
+                  trackId
+                }) => (
+                  <MusicCard
+                    key={trackId}
+                    musicName={musicName}
+                    previewUrl={previewUrl}
+                    trackId={trackId}
+                    getFavorite={this.getFavorite}
+                  />
+                ))
+              )}
+        </span>
       </div>
     );
   };

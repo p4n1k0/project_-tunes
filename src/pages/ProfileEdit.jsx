@@ -64,12 +64,13 @@ class ProfileEdit extends Component {
 
   render() {
     const { loading, description, email, image, name, isDisabled } = this.state;
+    if (loading) return <Loading />
 
     return (
       <div data-testid="page-profile-edit">
         <section>
           <Header />
-          <h1>ProfileEdit</h1>
+          <h1>Editar perfil</h1>
           <form>
             <label htmlFor="name-user">
               Nome
@@ -128,7 +129,6 @@ class ProfileEdit extends Component {
             </button>
           </form>
         </section>
-        {loading && <Loading />}
       </div>
     );
   };

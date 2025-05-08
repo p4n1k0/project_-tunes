@@ -78,27 +78,28 @@ class Search extends Component {
         </form>
         <span className="search-span-container">
           <div className="search-results-container">
-            <h3>{`Resultado de álbuns de: ${researched}`}</h3>
-            {albums.length === 0 ? (
-              <p>Nenhum álbum foi encontrado</p>
-            ) : (
-              albums.map((album) => (
-                <div key={album.collectionId}>
-                  <Link
-                    data-testid={`link-to-album-${album.collectionId}`}
-                    to={`/album/${album.collectionId}`}
-                    className="artist-card"
-                  >
-                    <img
-                      src={album.artworkUrl100}
-                      alt={album.collectionName}
-                    />
-                    <p>{album.artistName}</p>
-                    <p>{album.collectionName}</p>
-                  </Link>
-                </div>
-              ))
-            )}
+            <h3>{`Resultado de álbuns de ${researched}:`}</h3>
+            {albums.length === 0
+              ? (
+                <h3>Nenhum álbum foi encontrado</h3>
+              ) : (
+                albums.map((album) => (
+                  <div key={album.collectionId}>
+                    <Link
+                      data-testid={`link-to-album-${album.collectionId}`}
+                      to={`/album/${album.collectionId}`}
+                      className="artist-card"
+                    >
+                      <img
+                        src={album.artworkUrl100}
+                        alt={album.collectionName}
+                      />
+                      <p>{album.artistName}</p>
+                      <p>{album.collectionName}</p>
+                    </Link>
+                  </div>
+                ))
+              )}
           </div>
         </span>
       </div>

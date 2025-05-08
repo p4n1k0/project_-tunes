@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser } from '../services/userAPI';
+import './Profile.css';
 
 const INITAL_STATE = {
   loading: false,
@@ -31,16 +32,12 @@ class Profile extends Component {
 
   render() {
     const { loading, description, email, image, name } = this.state;
-    
+    if (loading) return <Loading />
+
     return (
-      <div data-testid="page-profile">
-        {loading && <Loading />}
-        <section>
-          <Header />
-          <h1>Profile</h1>
-          <p>{description}</p>
-          <p>{email}</p>
-          <p>{name}</p>
+      <div data-testid="page-profile" className="profile-card-container">
+        <Header />
+        <span className="user-tools-box">
           {
             image === ''
               ? (
@@ -57,11 +54,21 @@ class Profile extends Component {
                   data-testid="profile-image"
                 />
               )
-          }          
+          }
           <Link to="/profile/edit">
             Editar perfil
           </Link>
-        </section>
+        </span>
+        <span className="user-info-box">
+          <h2>Nome de usuário</h2>
+          <p>{name}</p>
+          <h2>E-mail</h2>
+          <p>{email}</p>
+          <fieldset>
+            <legend>Descrição</legend>
+            <p>{description}</p>
+          </fieldset>
+        </span>
       </div>
     );
   };
