@@ -109,7 +109,7 @@ class ProfileEdit extends Component {
                 id="inter-image"
                 type="file"
                 onChange={this.changeProfile}
-                className="itnern-image-input"
+                className="intern-image-input"
               />
             </label>
           </span>
