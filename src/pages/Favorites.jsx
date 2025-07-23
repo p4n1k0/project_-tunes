@@ -39,7 +39,7 @@ class Favorites extends Component {
             favorites.length === 0
               ? (
                 <span className="not-favorited-message">
-                  <h1>Nenhuma música favorita</h1>
+                  <h3>Nenhuma música favorita</h3>
                 </span>
               ) : (
                 favorites.map(({

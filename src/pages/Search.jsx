@@ -78,10 +78,10 @@ class Search extends Component {
         </form>
         <span className="search-span-container">
           <div className="search-results-container">
-            <h3>{`Resultado de álbuns de ${researched}:`}</h3>
+            <h3>{`Resultado de ${researched}:`}</h3>
             {albums.length === 0
               ? (
-                <h3>Nenhum álbum foi encontrado</h3>
+                <h3>Nenhum álbum encontrado!</h3>
               ) : (
                 albums.map((album) => (
                   <div key={album.collectionId}>
