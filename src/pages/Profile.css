@@ -5,9 +5,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10px;
-    padding-left: 30px;
-    padding-right: 50px;
+    margin: 10px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   .user-tools-box {
@@ -15,6 +17,36 @@
     display: flex;
     justify-content: space-around;
     padding: 25px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .user-tools-box img {
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .user-tools-box a {
+    align-items: center;
+    background-color: white;
+    border: 2px solid purple;
+    border-radius: 10px;
+    color: purple;
+    display: flex;
+    font-size: 10px;
+    font-weight: 700;
+    height: 40px;
+    justify-content: center;
+    text-decoration: none;
+    width: 150px;
+    transition: all 0.3s ease;
+  }
+
+  .user-tools-box a:hover {
+    background-color: purple;
+    color: white;
   }
   
   .user-info-box {
@@ -22,6 +54,17 @@
     flex-direction: column;
     padding: 25px;
     padding-top: 0;
+  }
+
+  .user-info-box h2 {
+    color: purple;
+    font-size: 10px;
+    margin-top: 10px;
+  }
+
+  .user-info-box p {
+    font-size: 10px;
+    word-wrap: break-word;
   }
   
   .user-info-box fieldset {
@@ -33,38 +76,72 @@
   .user-info-box fieldset legend {
     color: purple;
     font-weight: 700;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
   }
   
   .user-info-box fieldset p {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
     text-align: justify;
   }
-  
-  .user-tools-box img {
-    border-radius: 100%;
-    width: 200px;
+
+  @media (max-width: 768px) {
+    .profile-card-container {
+      padding: 15px;
+    }
+
+    .user-tools-box {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .user-tools-box img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .user-tools-box a {
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .user-info-box {
+      padding: 15px;
+    }
+
+    .user-info-box h2 {
+      font-size: 16px;
+    }
+
+    .user-info-box p {
+      font-size: 15px;
+    }
   }
-  
-  .user-tools-box-link {
-    align-items: center;
-    background-color: white;
-    border: 2px solid purple;
-    border-radius: 10px;
-    color: purple;
-    display: flex;
-    font-size: 16px;
-    font-weight: 700;
-    height: 40px;
-    justify-content: center;
-    text-decoration: none;
-    width: 130px;
-  }
-  
-  .user-tools-box-link:hover {
-    background-color: purple;
-    color: white;
+
+  @media (max-width: 400px) {
+    .profile-card-container {
+      border: none;
+      box-shadow: none;
+      padding: 10px;
+    }
+
+    .user-tools-box img {
+      width: 120px;
+      height: 120px;
+    }
+
+    .user-tools-box a {
+      font-size: 14px;
+      height: 36px;
+      width: 100%;
+    }
+
+    .user-info-box h2 {
+      font-size: 15px;
+    }
+
+    .user-info-box p,
+    .user-info-box fieldset p {
+      font-size: 14px;
+    }
   }
   
