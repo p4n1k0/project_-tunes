@@ -2,6 +2,11 @@
     color: purple;
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
   }
   
   .form-container {
@@ -9,10 +14,14 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    max-width: 900px;
+    gap: 2rem;
   }
   
   .form-container img {
-    height: 668px;
+    height: 500px;
+    max-width: 50%;
+    object-fit: contain;
   }
   
   .formulario {
@@ -20,21 +29,23 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 34px;
     width: 400px;
+    max-width: 90%;
   }
   
   .formulario h1 {
-    font-size: 73px;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
   
   .formulario input {
     border: 1px solid purple;
     border-radius: 10px;
     height: 50px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     padding-left: 15px;
-    width: 250px;
+    width: 300px;
   }
   
   .formulario button {
@@ -44,6 +55,7 @@
     font-size: 16px;
     height: 50px;
     width: 200px;
+    transition: all 0.2s ease;
   }
   
   .formulario button:disabled {
@@ -53,11 +65,55 @@
   
   .formulario button:hover {
     cursor: pointer;
+    transform: scale(1.02);
   }
   
   .formulario button:active {
     background-color: white;
     border: 2px solid aqua;
     color: rgba(57, 6, 49, 255);
+  }
+
+  @media (max-width: 768px) {
+    .form-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container img {
+      height: 200px;
+      max-width: 80%;
+      margin-top: 1rem;
+    }
+
+    .formulario h1 {
+      font-size: 2.2rem;
+    }
+
+    .formulario input {
+      width: 100%;
+      height: 45px;
+    }
+
+    .formulario button {
+      width: 100%;
+      height: 45px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .formu h1 {
+      font-size: 1.8rem;
+    }
+
+    .form-container img {
+      height: 150px;
+    }
+
+    .formulario input,
+    .formulario button {
+      font-size: 14px;
+    }
   }
   
